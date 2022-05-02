@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Encriptador Alura</title>
+		<link rel="stylesheet" href="reset.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<header>
+
+		</header>
+		
+		<main>
+			<div class="principal">
+				<div class="a">
+					<img src="a.png">
+				</div>	
+				<textarea name="texto" id="texto" placeholder="Digite seu texto"></textarea>
+				
+			 	<div class="codificado1">
+					<textarea name="texto-codificado" id="texto-codificado" readonly></textarea>
+					<button id="botao-copiar" onclick="copiar()"><label>Copiar</label></button>
+				</div>
+
+				<div class="codificado" id="codificado">
+					<img src="procurando.png" id="procurando">
+
+					<label id="nmensagem">Nenhuma mensagem encontrada</label>
+
+					<label id="nmensagem1">Digite um texto que você deseja criptografar ou descriptografar.</label>
+				</div>
+
+				<div>
+					<img src="atencao.png" alt="Atenção!" id="atencao">
+					<label id="atencao1">Apenas minúsculas e sem acento.</label>
+				</div>
+				
+				<div class="botao1">	
+					<button type="button" class="botao botaocripto" onclick="encriptar()"><label class="botaocripto">Criptografar</label></button>
+				</div>
+				
+				<div class="botao2">
+					<button type="button" class="botao botaodescripto" onclick="desencriptar()"><label id="botaodescripto">Descriptografar</label></button>
+				</div>
+			</div>
+
+			<script>
+				var palavra = "";
+		        var palavra1 = "";
+		        var palavra2 = "";
+				function limpar() {
+					palavra = "";
+			        palavra1 = "";
+			        palavra2 = "";
+		        }
+				
+				function encriptar() {
+					var input = document.querySelector('#texto');
+					palavra = input.value;
+					if (palavra != "") {
+						document.getElementById("codificado").style.display = "none";
+						document.getElementById('texto-codificado').value = criptografar(palavra);
+						limpar();
+					}else{
+						alert('Digite algo para encriptar!');
+					}
+				}
+				function desencriptar(){
+					var input = document.querySelector('#texto');
+					palavra = input.value;
+					if (palavra != "") {
+						document.getElementById("codificado").style.display = "none";
+						document.getElementById('texto-codificado').value = descriptografar(palavra);
+						limpar();
+					}else{
+						alert('Digite algo para desencriptar!');
+					}
+				}
+				function copiar(){
+					let texto = document.querySelector('#texto-codificado');
+					let textoCopiado = texto.value;
+					texto.select();
+					document.execCommand('copy');
+				}
+
+				function criptografar(texto){
+		          for(var i = 0; i < palavra.length; i++){
+		            if(palavra[i] == "a"){
+		                palavra1 = palavra1 + "ai";
+		            }else if(palavra[i] == 'e'){
+		              palavra1 = palavra1 + 'enter';
+		            }else if(palavra[i] == "i"){
+		                palavra1 = palavra1 + "imes";
+		            }else if(palavra[i] == "o"){
+		                palavra1 = palavra1 + "ober";
+		            }else if(palavra[i] == "u"){
+		              palavra1 = palavra1 + "ufat";
+		            }else{
+		                palavra1 = palavra1 + palavra[i];
+		            }
+		          }
+		          return palavra1;
+		        }
+
+		        function descriptografar(palavra){
+		          for(var i = 0; i < palavra.length; i++){
+		            if(palavra[i] == 'a'){
+		              palavra2 = palavra2 + 'a';
+		              i++;
+		            }else if(palavra[i] == 'e'){
+		              palavra2 = palavra2 + 'e';
+		              i = i + 4;
+		            }else if(palavra[i] == 'i'){
+		              palavra2 = palavra2 + 'i';
+		              i = i + 3;
+		            }else if(palavra[i] == 'o'){
+		              palavra2 = palavra2 + 'o';
+		              i = i + 3;
+		            }else if(palavra[i] == 'u'){
+		              palavra2 = palavra2 + 'u';
+		              i = i + 3;
+		            }else{
+		              palavra2 = palavra2 + palavra[i];
+		            }
+		          }
+		          return palavra2;
+		        }
+			</script>
+		</main>
+
+		<footer class="footer">
+			<p class="copyright">&copy; Desenvolvido por Felipe Rocha Barros</p>
+		</footer>
+	</body>
+</html>
